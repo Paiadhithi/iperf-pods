@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newiperf-deployment
+spec:
+  selector:
+    matchLabels:
+      app: newiperfpod
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: newiperfpod
+    spec:
+      containers:
+      - name: newiperfpod
+        image: networkstatic/iperf3
+        command: ['/bin/sh','-c','sleep 1d']
+        ports:
+        - containerPort: 5201
+
+
